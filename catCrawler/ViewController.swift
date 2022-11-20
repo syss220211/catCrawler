@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDelegate {
 
     
     // 레이아웃 설정
@@ -21,10 +21,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // collectionView, viewDidLoad에
+        self.setupView()
     }
 
     private func setupView() {
         self.view.addSubview(self.collectionView)
+        
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -33,7 +35,30 @@ class ViewController: UIViewController {
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         self.collectionView.backgroundColor = .red
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.reloadData()
      }
 
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+}
+
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = .black
+        return cell
+    }
+    
+    
+    
 }
 
