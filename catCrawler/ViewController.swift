@@ -17,8 +17,9 @@ class ViewController: UIViewController {
     
     /* UICollectionView : 데이터 아이템의 정렬된 컬렉션을 관리하고 사용자 지정 가능한 레이아웃을 사용하여 표시하는 개체
      UICollectionViewFlowLayout : 그리드 안에서 각 조직적 아이템의 각 섹션을 위한 헤더와 푸터 뷰의 레이아웃 객체
-     => collectionVeiw에 대한 레이아웃 정보를 생성하기 위한 추상적인 기본 클래스 */
-    // 레이아웃 설정
+     => collectionVeiw에 대한 레이아웃 정보를 생성하기 위한 추상적인 기본 클래스
+     * 오토레이아웃: 기기의 화면 크기가 변해도 사용자 입자에서 뷰의 비율이 동일하게끔 보이도록 배치하는 것 (순서 = translateAut... false, addSubView 추가, constraints 추가 */
+    // 오토 레이아웃 설정
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -39,9 +40,15 @@ class ViewController: UIViewController {
     }
 
     private func setupView() {
-        self.view.addSubview(self.collectionView)
+        self.view.addSubview(self.collectionView) // addSubView : view위에 sub(하위) view를 추가하겠다 = 새로운 하위 뷰를 얹어넣겠다
         
+        
+        // translatesAutoresizingMaskIntoConstraints : View의 autoresizing  mask가  Auto Layout constraints으로 변환(translated)되는지 여부를 결정하는 Bool값
+        // autoresizing mask? : UIView의 인스턴스 프로퍼티, Super View의 bounds가 변경 될 때, recevier의 size를 조정하는 방법을 결정하는 UIViewAutoresizing의 구조체 인스턴스
+        // 기종에 따라서 자동으로 size를 조정하지만(auto layout), constraint를 지정할 수 있게 하기 위해서 false를 사용
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // NSLayoutConstraint : 제약 기반의 레이아웃 시스템에서 충족해야하는 두 인터페이스 개체간의 관계
         NSLayoutConstraint.activate([
             self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -49,7 +56,10 @@ class ViewController: UIViewController {
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         self.collectionView.backgroundColor = .red
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        // collectionView에서 커스텀 셀을 사용하기 위해서 UITableView.register 함수를 통해 미리 셀을 등록
+        self.collectionView.register(CatCell.self, forCellWithReuseIdentifier: "Cell")
+        // forCellWithReuseIdentifier : 재사용할 셀 지정 "Cell"
+        // UICollectionView를 상속하는 새로운 셀 생성 UICollectionViewCell -> CatCell
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
@@ -76,7 +86,7 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CatCell // CatCell이라는 cell 사용을 명시
         cell.backgroundColor = .black
         return cell
     }
