@@ -20,7 +20,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // collectionView, viewDidLoad에
         self.setupView()
     }
 
