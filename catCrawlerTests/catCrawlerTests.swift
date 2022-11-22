@@ -26,6 +26,23 @@ final class catCrawlerTests: XCTestCase {
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
 
+    func testCatCrawling() {
+        let expection = XCTestExpectation(description: "Cat Crawling")
+        
+        let service = CatService()
+        service.getCats(page: 0, limit: 0) { result in
+            switch result {
+            case .failure(let error):
+                expection.fulfill()
+            case .success(let reponse):
+                print(reponse)
+                expection.fulfill()
+            }
+            
+        }
+        
+    }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {

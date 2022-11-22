@@ -107,11 +107,11 @@
 				D536FB7E29268FFC00A7FCA3 /* SceneDelegate.swift */,
 				D536FB8029268FFC00A7FCA3 /* ViewController.swift */,
 				D5499DB6292BCCFF003FB85A /* CatCell.swift */,
+				D5499DB8292BD99D003FB85A /* CatService.swift */,
 				D536FB8229268FFC00A7FCA3 /* Main.storyboard */,
 				D536FB8529268FFC00A7FCA3 /* Assets.xcassets */,
 				D536FB8729268FFC00A7FCA3 /* LaunchScreen.storyboard */,
 				D536FB8A29268FFC00A7FCA3 /* Info.plist */,
-				D5499DB8292BD99D003FB85A /* CatService.swift */,
 			);
 			path = catCrawler;
 			sourceTree = "<group>";
