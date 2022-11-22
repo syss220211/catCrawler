@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct CatResponse: Codable {
+    let id: String
+    let url: String
+    let width: Int
+    let height: Int
+}
+
+
 final class CatService {
     
     enum RequestError: Error {
@@ -17,7 +25,7 @@ final class CatService {
     func getCats(
         page: Int,
         limit: Int,
-        completion: @escaping (Result<String, RequestError>) -> Void
+        completion: @escaping (Result<CatResponse, RequestError>) -> Void
         // Result : 성공 실패 여부를 담을 수 있는 스위프트 변수
     ) {
         var components = URLComponents(string: "http://api.thecatapi.com/v1/images/search")!
@@ -30,7 +38,7 @@ final class CatService {
          */
         components.queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "page", value: "\(page)")
+            URLQueryItem(name: "limit", value: "\(limit)")
         ]
         
         var request = URLRequest(url: components.url!)
@@ -49,14 +57,13 @@ final class CatService {
                 completion(.failure(.networkError))
                 return
             }
-            guard let response = String(data: data, encoding: .unicode)
-            else {
+            
+            guard let response = try?
+                JSONDecoder().decode([CatResponse].self, from: data) else {
                 completion(.failure(.networkError))
                 return
             }
             print(response)
-            
-            completion(.success(response))
         }
         task.resume()
     }

@@ -18,6 +18,7 @@
 		D536FBA029268FFC00A7FCA3 /* catCrawlerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D536FB9F29268FFC00A7FCA3 /* catCrawlerUITestsLaunchTests.swift */; };
 		D5499DB7292BCCFF003FB85A /* CatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5499DB6292BCCFF003FB85A /* CatCell.swift */; };
 		D5499DB9292BD99D003FB85A /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5499DB8292BD99D003FB85A /* CatService.swift */; };
+		D565E1D4292D28BB00998A9A /* CatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D565E1D3292D28BB00998A9A /* CatViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D536FB9F29268FFC00A7FCA3 /* catCrawlerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catCrawlerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D5499DB6292BCCFF003FB85A /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
 		D5499DB8292BD99D003FB85A /* CatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatService.swift; sourceTree = "<group>"; };
+		D565E1D3292D28BB00998A9A /* CatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				D536FB8029268FFC00A7FCA3 /* ViewController.swift */,
 				D5499DB6292BCCFF003FB85A /* CatCell.swift */,
 				D5499DB8292BD99D003FB85A /* CatService.swift */,
+				D565E1D3292D28BB00998A9A /* CatViewModel.swift */,
 				D536FB8229268FFC00A7FCA3 /* Main.storyboard */,
 				D536FB8529268FFC00A7FCA3 /* Assets.xcassets */,
 				D536FB8729268FFC00A7FCA3 /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				D536FB7D29268FFC00A7FCA3 /* AppDelegate.swift in Sources */,
 				D536FB7F29268FFC00A7FCA3 /* SceneDelegate.swift in Sources */,
 				D5499DB9292BD99D003FB85A /* CatService.swift in Sources */,
+				D565E1D4292D28BB00998A9A /* CatViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

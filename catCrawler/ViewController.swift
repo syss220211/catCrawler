@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CatViewModelOutPut {
+        
 
     // cell width지정에서 사용되는 간격은 여기서 따로 지정
     private enum Metrics {
@@ -31,6 +32,10 @@ class ViewController: UIViewController {
         
         return cv
     }()
+    
+    // CatViewModel 넣기
+    private let viewModel = CatViewModel()
+    
     
     /*viewDidLoad : 뷰의 컨트롤로가 메모리에 로드되는 난 후 호출되는 뷰, 뷰의 로딩이 완료 되었을 때,
      시스템에 의해 자동으로 호출되며, 화면이 처음 만들어질때 한번만 실행됨 */
@@ -63,8 +68,18 @@ class ViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
+        self.viewModel.delegate = self
+        self.viewModel.load()
      }
-
+    
+    func loadComplete() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
@@ -82,7 +97,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        debugPrint(self.viewModel.data.count)
+        return self.viewModel.data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
