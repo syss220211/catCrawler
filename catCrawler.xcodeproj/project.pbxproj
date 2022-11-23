@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5216D1A292E1BFB00BA3A82 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5216D19292E1BFB00BA3A82 /* ImageService.swift */; };
 		D536FB7D29268FFC00A7FCA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D536FB7C29268FFC00A7FCA3 /* AppDelegate.swift */; };
 		D536FB7F29268FFC00A7FCA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D536FB7E29268FFC00A7FCA3 /* SceneDelegate.swift */; };
 		D536FB8129268FFC00A7FCA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D536FB8029268FFC00A7FCA3 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D5216D19292E1BFB00BA3A82 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		D536FB7929268FFC00A7FCA3 /* catCrawler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catCrawler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D536FB7C29268FFC00A7FCA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D536FB7E29268FFC00A7FCA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				D536FB8529268FFC00A7FCA3 /* Assets.xcassets */,
 				D536FB8729268FFC00A7FCA3 /* LaunchScreen.storyboard */,
 				D536FB8A29268FFC00A7FCA3 /* Info.plist */,
+				D5216D19292E1BFB00BA3A82 /* ImageService.swift */,
 			);
 			path = catCrawler;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				D536FB7F29268FFC00A7FCA3 /* SceneDelegate.swift in Sources */,
 				D5499DB9292BD99D003FB85A /* CatService.swift in Sources */,
 				D565E1D4292D28BB00998A9A /* CatViewModel.swift in Sources */,
+				D5216D1A292E1BFB00BA3A82 /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -98,12 +98,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         debugPrint(self.viewModel.data.count)
-        return self.viewModel.data.count
+        return self.viewModel.data.endIndex
+//        self.viewModel.data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CatCell // CatCell이라는 cell 사용을 명시
-        cell.backgroundColor = .black
+        let data = self.viewModel.data[indexPath.item]
+        cell.setupData(urlString: data.url)
         return cell
     }
     

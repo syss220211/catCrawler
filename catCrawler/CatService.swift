@@ -63,7 +63,7 @@ final class CatService {
                 completion(.failure(.networkError))
                 return
             }
-            print(response)
+            print("response", response)
         }
         task.resume()
     }

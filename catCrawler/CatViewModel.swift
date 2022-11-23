@@ -36,7 +36,8 @@ final class CatViewModel {
             case .failure(let error):
                 break
             case .success(let response):
-                self.data.append(response)
+//                self.data.append(contentsOf: response)
+//                self.data.append(contentsOf: response)
 //                self.data.append(contentsOf: response)
                 self.delegate?.loadComplete()
             }

@@ -12,6 +12,10 @@ final class CatCell: UICollectionViewCell {
     
     private let imageView = UIImageView()
     
+    // 다운로드 된 이미지 셀에서 가져다 쓰기
+    private let service = ImageService.shared
+    
+    
     // 생성자 상속 후 override
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +39,10 @@ final class CatCell: UICollectionViewCell {
         self.imageView.backgroundColor = .cyan
         self.imageView.contentMode = .scaleToFill // 이미지 꽉차게
         
+    }
+    func setupData(urlString: String) {
+        // 셀이미지로 이미지 뷰를 가져오기
+        service.setImage(view: self.imageView, urlString: urlString)
     }
     
     
