@@ -60,7 +60,7 @@ class ViewController: UIViewController, CatViewModelOutPut {
             self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
-        self.collectionView.backgroundColor = .red
+        self.collectionView.backgroundColor = .white
         // collectionView에서 커스텀 셀을 사용하기 위해서 UITableView.register 함수를 통해 미리 셀을 등록
         self.collectionView.register(CatCell.self, forCellWithReuseIdentifier: "Cell")
         // forCellWithReuseIdentifier : 재사용할 셀 지정 "Cell"
@@ -97,9 +97,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        debugPrint(self.viewModel.data.count)
-        return self.viewModel.data.endIndex
-//        self.viewModel.data.count
+        return self.viewModel.data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

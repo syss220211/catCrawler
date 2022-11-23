@@ -25,12 +25,10 @@ final class CatService {
     func getCats(
         page: Int,
         limit: Int,
-        completion: @escaping (Result<CatResponse, RequestError>) -> Void
+        completion: @escaping (Result<[CatResponse], RequestError>) -> Void
         // Result : 성공 실패 여부를 담을 수 있는 스위프트 변수
     ) {
         var components = URLComponents(string: "http://api.thecatapi.com/v1/images/search")!
-        
-        
         /*
          querryItems : 쿼리 문자열에 나타나는 순서대로 IRL에 대한 쿼리 항목의 배열
          각각은 키/쌍으로 이루어져 있다.
@@ -57,13 +55,15 @@ final class CatService {
                 completion(.failure(.networkError))
                 return
             }
-            
+        
             guard let response = try?
                 JSONDecoder().decode([CatResponse].self, from: data) else {
                 completion(.failure(.networkError))
                 return
             }
-            print("response", response)
+            print(response)
+            
+            completion(.success(response))
         }
         task.resume()
     }

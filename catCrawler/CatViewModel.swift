@@ -6,6 +6,7 @@
 //
 // 3:00
 import Foundation
+import SwiftUI
 
 // 리스펀스 가져오는 것이 비동기라서 값을 언제 가져오는지 알기 힘들기 때문에 load하고 나서 알수 있도록 하는 output 생성 -> delgate가 물어주게 작동
 protocol CatViewModelOutPut: AnyObject {
@@ -30,15 +31,14 @@ final class CatViewModel {
     
     // 불러오는 함수
     func load() {
-        self.service.getCats(page: self.currentPage, limit: self.limit) {result in
+        self.service.getCats(page: self.currentPage, limit: self.limit) {
+            result in
             
             switch result {
             case .failure(let error):
                 break
             case .success(let response):
-//                self.data.append(contentsOf: response)
-//                self.data.append(contentsOf: response)
-//                self.data.append(contentsOf: response)
+                self.data.append(contentsOf: response)
                 self.delegate?.loadComplete()
             }
         }

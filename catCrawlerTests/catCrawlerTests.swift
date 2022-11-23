@@ -38,8 +38,8 @@ final class catCrawlerTests: XCTestCase {
                 print(reponse)
                 expection.fulfill()
             }
-            
         }
+        wait(for: [expection], timeout: 10.0)
         
     }
     
