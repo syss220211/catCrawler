@@ -60,7 +60,6 @@ class ViewController: UIViewController, CatViewModelOutPut {
             self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
-        self.collectionView.backgroundColor = .white
         // collectionView에서 커스텀 셀을 사용하기 위해서 UITableView.register 함수를 통해 미리 셀을 등록
         self.collectionView.register(CatCell.self, forCellWithReuseIdentifier: "Cell")
         // forCellWithReuseIdentifier : 재사용할 셀 지정 "Cell"
@@ -93,6 +92,12 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let cellWidth = (width - 2 * Metrics.inset) / 3
         return CGSize(width: cellWidth, height: cellWidth)
     }
+    
+    // 무한 스크롤 (UICellectionVeiw가 다시 올라오기전에 재로딩하는 방법?, 맨 마지막 셀이 보이기 시작할때 api 요청 보내기)
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.viewModel.loadMoreIfNeed(index: indexPath.item)
+    }
+    
 }
 
 extension ViewController: UICollectionViewDataSource {

@@ -18,12 +18,20 @@ class ImageService {
         case networkError
     }
     
+    // 캐시 NSCache = 담아두었다가 메모리가 부족하면 알아서 날림
+    private let cash = NSCache<NSString, UIImage>()
+    
     // 다운로드 이미지를 활용해서 UI 그리기 - view에 이미지를 세팅하는 함수 만들기
-    func setImage(view: UIImageView, urlString: String) {
+    func setImage(view: UIImageView, urlString: String) -> URLSessionDataTask? {
         
+        if let image = cash.object(forKey: urlString as NSString) {
+            view.image = image
+            return nil
+        }
         //이미지 다운로드
-        self.downloadImage(urlString: urlString) { result in
-            
+        return self.downloadImage(urlString: urlString) { [weak self]
+            result in
+            guard let self = self else { return }
             // 다운로드 성공시 메인큐에서 가져오기 (먼저 메인큐로 보내고 성공시 뷰에 이미지 넣기)
             DispatchQueue.main.async {
                 
@@ -31,17 +39,23 @@ class ImageService {
                 case .failure(let error):
                     return
                 case .success(let image):
-                    view.image = image
+                    
+                    self.cash.setObject(image, forKey: urlString as NSString)
+                    UIView.transition(with: view, duration: 1, options: .transitionCrossDissolve) {
+                        
+                        view.image = image
+                    } completion: { _ in
+                        
+                    }
                 }
             }
-            
         }
     }
     
     
     // 다운로드 하는 기능 작성
     func downloadImage(urlString: String, completion: @escaping
-    (Result<UIImage, Error>) -> Void) {
+    (Result<UIImage, Error>) -> Void) -> URLSessionDataTask {
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "GET"
         
@@ -66,5 +80,8 @@ class ImageService {
             
         }
         task.resume()
+        
+        // cancel : 요청 중단 함수
+        return task
         }
 }

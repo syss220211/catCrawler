@@ -29,18 +29,35 @@ final class CatViewModel {
     
     weak var delegate: CatViewModelOutPut?
     
+    var isloading: Bool = false
+    
+    // 무한 로딩
+    func loadMoreIfNeed(index: Int) {
+        if index > data.count - 10 {
+            self.load()
+        }
+    }
+    
     // 불러오는 함수
     func load() {
+        guard !isloading else { return } // isloading이면 아무것도 하지 않음
+        self.isloading = true
         self.service.getCats(page: self.currentPage, limit: self.limit) {
             result in
             
-            switch result {
-            case .failure(let error):
-                break
-            case .success(let response):
-                self.data.append(contentsOf: response)
-                self.delegate?.loadComplete()
+            DispatchQueue.main.async {
+                
+                switch result {
+                case .failure(let error):
+                    break
+                case .success(let response):
+                    self.data.append(contentsOf: response)
+                    self.currentPage += 1
+                    self.delegate?.loadComplete()
+                }
+                self.isloading = false
             }
+            
         }
     }
 }
